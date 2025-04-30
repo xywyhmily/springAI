@@ -7,6 +7,7 @@ package com.zjx.star.springai.config;
  */
 
 import com.zjx.star.springai.constant.ChatRoleConstant;
+import com.zjx.star.springai.tool.CourseTools;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
 import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
@@ -38,6 +39,18 @@ public class AiConfig {
                 .defaultSystem(ChatRoleConstant.help_girlfriend_happy)
                 .defaultAdvisors(new SimpleLoggerAdvisor())
                 .defaultAdvisors(new MessageChatMemoryAdvisor(chatMemory))
+                .build();
+
+    }
+
+    @Bean
+    public ChatClient serviceChatClient(OpenAiChatModel model, ChatMemory chatMemory, CourseTools courseTools) {
+
+        return ChatClient.builder(model)
+                .defaultSystem(ChatRoleConstant.zhi_neng_ke_fu)
+                .defaultAdvisors(new SimpleLoggerAdvisor())
+                .defaultAdvisors(new MessageChatMemoryAdvisor(chatMemory))
+                .defaultTools(courseTools)
                 .build();
 
     }
