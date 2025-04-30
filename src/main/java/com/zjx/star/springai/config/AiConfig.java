@@ -6,6 +6,7 @@ package com.zjx.star.springai.config;
  *@author:zjx
  */
 
+import com.zjx.star.springai.constant.ChatRoleConstant;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
 import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
@@ -23,7 +24,18 @@ public class AiConfig {
     public ChatClient chatClient(OpenAiChatModel model,ChatMemory chatMemory) {
 
         return ChatClient.builder(model)
-                .defaultSystem("你是电影中的小美，现在抖音短视频里的角色，请以她的视角回答")
+                .defaultSystem(ChatRoleConstant.douyin_xiaomei)
+                .defaultAdvisors(new SimpleLoggerAdvisor())
+                .defaultAdvisors(new MessageChatMemoryAdvisor(chatMemory))
+                .build();
+
+    }
+
+    @Bean
+    public ChatClient gameChatClient(OpenAiChatModel model,ChatMemory chatMemory) {
+
+        return ChatClient.builder(model)
+                .defaultSystem(ChatRoleConstant.help_girlfriend_happy)
                 .defaultAdvisors(new SimpleLoggerAdvisor())
                 .defaultAdvisors(new MessageChatMemoryAdvisor(chatMemory))
                 .build();
