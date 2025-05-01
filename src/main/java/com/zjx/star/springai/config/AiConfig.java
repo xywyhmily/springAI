@@ -14,6 +14,7 @@ import org.springframework.ai.chat.client.advisor.QuestionAnswerAdvisor;
 import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
 import org.springframework.ai.chat.memory.ChatMemory;
 import org.springframework.ai.chat.memory.InMemoryChatMemory;
+import org.springframework.ai.chat.prompt.ChatOptions;
 import org.springframework.ai.openai.OpenAiChatModel;
 import org.springframework.ai.openai.OpenAiEmbeddingModel;
 import org.springframework.ai.vectorstore.SearchRequest;
@@ -30,6 +31,7 @@ public class AiConfig {
     public ChatClient chatClient(OpenAiChatModel model,ChatMemory chatMemory) {
 
         return ChatClient.builder(model)
+                .defaultOptions(ChatOptions.builder().model("qwen-omni-turbo").build())
                 .defaultSystem(ChatRoleConstant.douyin_xiaomei)
                 .defaultAdvisors(new SimpleLoggerAdvisor())
                 .defaultAdvisors(new MessageChatMemoryAdvisor(chatMemory))
