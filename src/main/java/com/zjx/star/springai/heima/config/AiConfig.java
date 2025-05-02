@@ -30,7 +30,7 @@ public class AiConfig {
     public ChatClient chatClient(OpenAiChatModel model,ChatMemory chatMemory) {
 
         return ChatClient.builder(model)
-                .defaultOptions(ChatOptions.builder().model("qwen-omni-turbo").build())
+//                .defaultOptions(ChatOptions.builder().model("qwen-omni-turbo").build())
                 .defaultSystem(ChatRoleConstant.douyin_xiaomei)
                 .defaultAdvisors(new SimpleLoggerAdvisor())
                 .defaultAdvisors(new MessageChatMemoryAdvisor(chatMemory))

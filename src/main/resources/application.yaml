@@ -1,10 +1,10 @@
 spring:
   ai:
     openai:
-#      api-key: ${DEEPSEEK_API_KEY}
-#      base-url: https://api.deepseek.com
-      api-key: ${ALIYUN_API_KEY}
-      base-url: https://dashscope.aliyuncs.com/compatible-mode
+      api-key: ${DEEPSEEK_API_KEY}
+      base-url: https://api.deepseek.com
+#      api-key: ${ALIYUN_API_KEY}
+#      base-url: https://dashscope.aliyuncs.com/compatible-mode
       chat:
         options:
           model: deepseek-chat
